@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Playlist Suggester</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist Suggester</h1>
+
+        <div class="form-container">
+            <form id="city-form">
+                <h2>Get a suggestion by city</h2>
+                <p>We'll find the weather and pick a vibe for you.</p>
+                <input type="text" id="city-input" placeholder="Enter a city..." required>
+                <button type="submit">Get by Weather</button>
+            </form>
+
+            <form id="mood-form">
+                <h2>Get a suggestion by mood</h2>
+                <p>Tell us the vibe you're looking for.</p>
+                <input type="text" id="mood-input" placeholder="Enter a mood (e.g., workout)" required>
+                <button type="submit">Get by Mood</button>
+            </form>
+        </div>
+
+        <div id="results-container">
+            </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
