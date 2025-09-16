@@ -12,18 +12,28 @@
 
         <div class="form-container">
             <form id="city-form">
-                <h2>Get a suggestion by city</h2>
-                <p>We'll find the weather and pick a vibe for you.</p>
+                <h2>By City</h2>
+                <p>Find the weather and get a vibe.</p>
                 <input type="text" id="city-input" placeholder="Enter a city..." required>
                 <button type="submit">Get by Weather</button>
             </form>
 
             <form id="mood-form">
-                <h2>Get a suggestion by mood</h2>
-                <p>Tell us the vibe you're looking for.</p>
-                <input type="text" id="mood-input" placeholder="Enter a mood (e.g., workout)" required>
+                <h2>By Mood</h2>
+                <p>Tell us the vibe you want.</p>
+                <input type="text" id="mood-input" placeholder="Enter a mood..." required>
+                <div class="mood-tags">
+                    <span class="tag">Focus</span>
+                    <span class="tag">Workout</span>
+                    <span class="tag">Chill</span>
+                    <span class="tag">Party</span>
+                </div>
                 <button type="submit">Get by Mood</button>
             </form>
+        </div>
+
+        <div class="loader-container" id="loader" style="display: none;">
+            <div class="loader"></div>
         </div>
 
         <div id="results-container">
