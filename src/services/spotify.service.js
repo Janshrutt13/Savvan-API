@@ -1,5 +1,4 @@
-import axios from "axios";
-
+const axios = require('axios');
 
 //Get an access token from Spotify.
 //Search playlists by a given genre.
@@ -18,7 +17,7 @@ const getAccessToken = async () => {
     return response.data.access_token;
 };
 
-export const getPlaylistByGenre = async(genre) => {
+const getPlaylistByGenre = async(genre) => {
     try{
         const accessToken = await getAccessToken();
         const response = await axios.get("https://api.spotify.com/v1/search" , {
@@ -33,3 +32,5 @@ export const getPlaylistByGenre = async(genre) => {
         throw new Error("Could not fetch playlists from Spotify");
     }
 };
+
+module.exports = { getPlaylistByGenre };
