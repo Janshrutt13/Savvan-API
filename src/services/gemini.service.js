@@ -8,7 +8,7 @@ const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
  * @returns {Promise<string>} A creative, searchable music genre.
  */
 
-async function getGenreFromAi(weatherCondition , city){
+async function getGenreFromAI(weatherCondition , city){
     try{
         //gemini model
         const model = genAi.getGenerativeModel({ model : "gemini-1.5-flash"});
@@ -25,11 +25,9 @@ async function getGenreFromAi(weatherCondition , city){
         
         return text.trim();
     }catch(err){
-        console.error("Error generating content!");
+        console.error("Error generating content:", err.message);
     
         //fallback incase of ai failure
         return "pop";
     }
 };
-
-module.exports = { getGenreFromAI: getGenreFromAi };

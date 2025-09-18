@@ -4,25 +4,30 @@ const axios = require('axios');
 //Search playlists by a given genre.
 //Return the first 5 playlists.
 
-CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
 const getAccessToken = async () => {
-    const response = await axios.post("https://accounts.spotify.com/api/token" , "grant_type=client_credentials" , {
-       headers : {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'),
-       },
-    });
-    return response.data.access_token;
+    try {
+        const response = await axios.post("https://accounts.spotify.com/api/token", "grant_type=client_credentials", {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'),
+            },
+        });
+        return response.data.access_token;
+    } catch (error) {
+        console.error("Error getting Spotify access token:", error.message);
+        throw new Error("Failed to authenticate with Spotify");
+    }
 };
 
 const getPlaylistsByGenre = async(genre) => {
     try{
         const accessToken = await getAccessToken();
         const response = await axios.get("https://api.spotify.com/v1/search" , {
-           headers : {  'Authorization' : `Bearer ${accessToken}` },
-           params : { q : genre, type : "playlist" , limit : 5}
+            headers: { 'Authorization': `Bearer ${accessToken}` },
+            params: { q: genre, type: "playlist", limit: 5 }
         });
 
         return response.data.playlists.items;
