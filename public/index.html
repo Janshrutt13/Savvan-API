@@ -3,78 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atmospheric Music Suggester</title>
+    <title>The Sonic Altimeter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="aurora-bg"></div>
+    <div class="wood-grain-bg"></div>
     
-    <div class="container">
-        <header class="app-header">
-            <h1 class="app-title">Atmospheric</h1>
-            <p class="app-subtitle">Discover music that matches your moment</p>
+    <div class="instrument-panel">
+        <header class="panel-header">
+            <h1 class="instrument-title">THE SONIC ALTIMETER</h1>
+            <p class="instrument-subtitle">ATMOSPHERIC MUSIC CALIBRATION DEVICE</p>
         </header>
 
-        <div class="search-section" id="search-section">
-            <div class="input-container">
-                <input type="text" id="main-input" class="main-input" placeholder="What's the vibe today?" autocomplete="off">
-                <div class="input-actions">
-                    <button type="button" id="search-btn" class="search-btn">
-                        <span class="btn-text">Discover</span>
-                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </button>
-                    <button type="button" id="surprise-btn" class="surprise-btn" title="Surprise Me!">
-                        <span class="dice-icon">🎲</span>
+        <div class="control-section" id="control-section">
+            <div class="dial-container">
+                <!-- Location Dial (Barometer) -->
+                <div class="dial-housing left-dial">
+                    <div class="dial-label">LOCATION</div>
+                    <div class="barometer-dial" id="location-dial">
+                        <div class="dial-face">
+                            <div class="globe-background" id="globe"></div>
+                            <div class="dial-markings"></div>
+                            <div class="dial-needle" id="location-needle"></div>
+                            <div class="dial-center"></div>
+                        </div>
+                        <div class="city-display" id="city-display">
+                            <span id="city-name">SELECT CITY</span>
+                        </div>
+                    </div>
+                    <input type="text" id="city-input" class="hidden-input" placeholder="Type city name...">
+                </div>
+
+                <!-- Engage Button -->
+                <div class="engage-section">
+                    <button class="engage-button" id="engage-button">
+                        <div class="button-surface">
+                            <span class="button-text">ENGAGE</span>
+                            <div class="button-glow"></div>
+                        </div>
                     </button>
                 </div>
-            </div>
 
-            <div class="search-mode">
-                <div class="mode-toggle" id="mode-toggle">
-                    <button class="mode-btn active" data-mode="mood">
-                        <span class="mode-icon">✨</span>
-                        <span class="mode-text">By Mood</span>
-                    </button>
-                    <button class="mode-btn" data-mode="city">
-                        <span class="mode-icon">📍</span>
-                        <span class="mode-text">By City</span>
-                    </button>
+                <!-- Atmosphere Dial (Mood Tuner) -->
+                <div class="dial-housing right-dial">
+                    <div class="dial-label">ATMOSPHERE</div>
+                    <div class="mood-dial" id="mood-dial">
+                        <div class="dial-face">
+                            <div class="mood-gradient"></div>
+                            <div class="dial-markings"></div>
+                            <div class="dial-knob" id="mood-knob"></div>
+                        </div>
+                        <div class="mood-display" id="mood-display">
+                            <span id="mood-name">NEUTRAL</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="mood-tags" id="mood-tags">
-                <button class="mood-tag" data-mood="focus">Focus</button>
-                <button class="mood-tag" data-mood="workout">Workout</button>
-                <button class="mood-tag" data-mood="chill">Chill</button>
-                <button class="mood-tag" data-mood="rainy day">Rainy Day</button>
-                <button class="mood-tag" data-mood="party">Party</button>
-                <button class="mood-tag" data-mood="study">Study</button>
             </div>
         </div>
 
         <div class="loading-section" id="loading-section" style="display: none;">
-            <div class="vinyl-loader">
-                <div class="vinyl-record">
-                    <div class="vinyl-center"></div>
-                    <div class="vinyl-groove"></div>
-                    <div class="vinyl-groove"></div>
-                    <div class="vinyl-groove"></div>
-                </div>
+            <div class="analog-loader">
+                <div class="tape-reel left-reel"></div>
+                <div class="tape-reel right-reel"></div>
+                <div class="tape-line"></div>
             </div>
-            <p class="loading-text">Curating your perfect soundtrack...</p>
+            <p class="loading-text">CALIBRATING SONIC FREQUENCIES...</p>
         </div>
 
         <div class="results-section" id="results-section">
-            <div class="results-header" id="results-header" style="display: none;">
-                <h2 class="results-title" id="results-title"></h2>
+            <div class="tape-deck" id="tape-deck"></div>
+            <div class="current-player" id="current-player" style="display: none;">
+                <div class="player-housing">
+                    <div class="player-display">
+                        <span class="now-playing">NOW PLAYING</span>
+                        <div class="equalizer">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="playlist-grid" id="playlist-grid"></div>
         </div>
     </div>
 
