@@ -21,6 +21,9 @@ async function getGenreFromAi(weatherCondition , city){
 
         const result = await model.generateContent(prompt);
         const response = result.response;
+        const text = response.text();
+        
+        return text.trim();
     }catch(err){
         console.error("Error generating content!");
     
@@ -29,4 +32,4 @@ async function getGenreFromAi(weatherCondition , city){
     }
 };
 
-module.exports = { getGenreFromAi };
+module.exports = { getGenreFromAI: getGenreFromAi };

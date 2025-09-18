@@ -6,7 +6,7 @@ const API_KEY = process.env.OPENWEATHER_API_KEY;
 const getWeatherByCity = async(city) => {
     try{
        const response = await axios.get(BASE_URL, {
-          params : { q : city, appid : API_KEY , units : metrics},
+          params : { q : city, appid : API_KEY , units : 'metric'},
        });
          return response.data.weather[0].main;
     }catch(err){

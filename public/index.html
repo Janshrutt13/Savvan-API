@@ -3,42 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Playlist Suggester</title>
+    <title>Atmospheric Music Suggester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="aurora-bg"></div>
+    
     <div class="container">
-        <h1>Playlist Suggester</h1>
+        <header class="app-header">
+            <h1 class="app-title">Atmospheric</h1>
+            <p class="app-subtitle">Discover music that matches your moment</p>
+        </header>
 
-        <div class="form-container">
-            <form id="city-form">
-                <h2>By City</h2>
-                <p>Find the weather and get a vibe.</p>
-                <input type="text" id="city-input" placeholder="Enter a city..." required>
-                <button type="submit">Get by Weather</button>
-            </form>
-
-            <form id="mood-form">
-                <h2>By Mood</h2>
-                <p>Tell us the vibe you want.</p>
-                <input type="text" id="mood-input" placeholder="Enter a mood..." required>
-                <div class="mood-tags">
-                    <span class="tag">Focus</span>
-                    <span class="tag">Workout</span>
-                    <span class="tag">Chill</span>
-                    <span class="tag">Party</span>
+        <div class="search-section" id="search-section">
+            <div class="input-container">
+                <input type="text" id="main-input" class="main-input" placeholder="What's the vibe today?" autocomplete="off">
+                <div class="input-actions">
+                    <button type="button" id="search-btn" class="search-btn">
+                        <span class="btn-text">Discover</span>
+                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button type="button" id="surprise-btn" class="surprise-btn" title="Surprise Me!">
+                        <span class="dice-icon">🎲</span>
+                    </button>
                 </div>
-                <button type="submit">Get by Mood</button>
-            </form>
-        </div>
-
-        <div class="loader-container" id="loader" style="display: none;">
-            <div class="loader"></div>
-        </div>
-
-        <div id="results-container">
             </div>
+
+            <div class="search-mode">
+                <div class="mode-toggle" id="mode-toggle">
+                    <button class="mode-btn active" data-mode="mood">
+                        <span class="mode-icon">✨</span>
+                        <span class="mode-text">By Mood</span>
+                    </button>
+                    <button class="mode-btn" data-mode="city">
+                        <span class="mode-icon">📍</span>
+                        <span class="mode-text">By City</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mood-tags" id="mood-tags">
+                <button class="mood-tag" data-mood="focus">Focus</button>
+                <button class="mood-tag" data-mood="workout">Workout</button>
+                <button class="mood-tag" data-mood="chill">Chill</button>
+                <button class="mood-tag" data-mood="rainy day">Rainy Day</button>
+                <button class="mood-tag" data-mood="party">Party</button>
+                <button class="mood-tag" data-mood="study">Study</button>
+            </div>
+        </div>
+
+        <div class="loading-section" id="loading-section" style="display: none;">
+            <div class="vinyl-loader">
+                <div class="vinyl-record">
+                    <div class="vinyl-center"></div>
+                    <div class="vinyl-groove"></div>
+                    <div class="vinyl-groove"></div>
+                    <div class="vinyl-groove"></div>
+                </div>
+            </div>
+            <p class="loading-text">Curating your perfect soundtrack...</p>
+        </div>
+
+        <div class="results-section" id="results-section">
+            <div class="results-header" id="results-header" style="display: none;">
+                <h2 class="results-title" id="results-title"></h2>
+            </div>
+            <div class="playlist-grid" id="playlist-grid"></div>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

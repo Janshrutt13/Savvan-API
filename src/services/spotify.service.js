@@ -17,12 +17,12 @@ const getAccessToken = async () => {
     return response.data.access_token;
 };
 
-const getPlaylistByGenre = async(genre) => {
+const getPlaylistsByGenre = async(genre) => {
     try{
         const accessToken = await getAccessToken();
         const response = await axios.get("https://api.spotify.com/v1/search" , {
            headers : {  'Authorization' : `Bearer ${accessToken}` },
-           params : { q : "genre", type : "playlist" , limit : 5}
+           params : { q : genre, type : "playlist" , limit : 5}
         });
 
         return response.data.playlists.items;
@@ -33,4 +33,4 @@ const getPlaylistByGenre = async(genre) => {
     }
 };
 
-module.exports = { getPlaylistByGenre };
+module.exports = { getPlaylistsByGenre };
